@@ -1,0 +1,47 @@
+{
+ "version": "1.0",
+ "session": {
+  "sessionId": "5b5ddf11-b826-457d-8ee8-eaef05a7794d",
+  "user": {
+   "userId": "KbiTcsmXQvy7qIF1PKw_nQ",
+   "accessToken": "6fa03486-2a5e-4169-89ba-6a9886f0379e"
+  },
+  "new": true,
+  "sessionAttributes": {
+   "audioInfo": {
+    "song": {
+     "file_url": "http://hoge"
+    },
+    "singer": {}
+   },
+   "songType": 1
+  }
+ },
+ "context": {
+  "System": {
+   "user": {
+    "userId": "KbiTcsmXQvy7qIF1PKw_nQ",
+    "accessToken": "6fa03486-2a5e-4169-89ba-6a9886f0379e"
+   },
+   "device": {
+    "deviceId": "27366e7f-422b-4e30-9896-5f6199dc9798",
+    "display": {
+     "size": "l100",
+     "orientation": "landscape",
+     "dpi": 96,
+     "contentLayer": {
+      "width": 640,
+      "height": 360
+     }
+    }
+   }
+  }
+ },
+ "request": {
+  "type": "IntentRequest",
+  "intent": {
+   "name": "LikeIntent",
+   "slots": null
+  }
+ }
+}

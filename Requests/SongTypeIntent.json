@@ -1,0 +1,47 @@
+{
+  "version": "1.0",
+  "session": {
+    "sessionId": "a99d6611-6700-4039-9061-6e3be1d0d64e",
+    "sessionAttributes": {},
+    "user": {
+      "userId": "svuTAB6UQEu8h1W2Rmn6AA",
+      "accessToken": "fdbeb957-83a3-42d7-b5da-72a2bd3e8e05"
+    },
+    "new": true
+  },
+  "context": {
+    "System": {
+      "application": {
+        "applicationId": "co.jp.voisinger"
+      },
+      "user": {
+        "userId": "svuTAB6UQEu8h1W2Rmn6AA",
+        "accessToken": "fdbeb957-83a3-42d7-b5da-72a2bd3e8e05"
+      },
+      "device": {
+        "deviceId": "530ec6f5-6778-49d9-b402-5a83ab96cc89",
+        "display": {
+          "size": "l100",
+          "orientation": "landscape",
+          "dpi": 96,
+          "contentLayer": {
+            "width": 640,
+            "height": 360
+          }
+        }
+      }
+    }
+  },
+  "request": {
+    "type": "IntentRequest",
+    "intent": {
+      "name": "SongTypeIntent",
+      "slots": {
+        "SongType": {
+          "name": "SongType",
+          "value": "1"
+        }
+      }
+    }
+  }
+}
