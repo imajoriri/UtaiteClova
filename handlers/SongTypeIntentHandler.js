@@ -15,7 +15,7 @@ exports.SongTypeIntentHandler = {
     
     // songTypeとuser_idを取得
     const slots = handlerInput.requestEnvelope.getSlot();
-    const songType = slots.SongType;
+    const songType = Number(slots.SongType);
     const userId = handlerInput.requestEnvelope.session.user.userId;
     
     // songtypeとuseridを乗せて/api/v1/cek/get_audioにpost
@@ -46,5 +46,15 @@ exports.SongTypeIntentHandler = {
       .speak(lastMsg)
       .reprompt(lastMsg)
       .getResponse();
+  }
+}
+
+function getAudioInfo(songType, userId){
+  return {
+    song: {
+      file_url: "http://hoge",
+    },
+    singer: {
+    }
   }
 }
