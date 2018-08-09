@@ -1,3 +1,4 @@
+const { getAudioInfo } = require('./../functions/getAudioInfo');
 
 exports.SongTypeIntentHandler = {
   canHandle: function(handlerInput){
@@ -46,15 +47,5 @@ exports.SongTypeIntentHandler = {
       .speak(lastMsg)
       .reprompt(lastMsg)
       .getResponse();
-  }
-}
-
-function getAudioInfo(songType, userId){
-  return {
-    song: {
-      file_url: "http://hoge",
-    },
-    singer: {
-    }
   }
 }
