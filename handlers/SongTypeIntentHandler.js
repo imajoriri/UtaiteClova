@@ -34,7 +34,7 @@ exports.SongTypeIntentHandler = {
     const audioURL = audioInfo.song.file_url;
 
     if(songType === 1){
-      var firstMsg = `いいねされていない曲を流します。`;
+      var firstMsg = `いいねしたことない曲を流します。`;
       var lastMsg = `次の曲に進みますか？いいねしますか？`;
     }else{
       var firstMsg = `いいねされている曲を流します。`;
