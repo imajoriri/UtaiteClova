@@ -4,7 +4,7 @@ exports.NextIntentHandler = {
   canHandle: function(handlerInput){
     return handlerInput.requestEnvelope.isMatch('NextIntent');
   },
-  handle: function(handlerInput){
+  handle: async function(handlerInput){
     // attributesからsongtypeを取得
     // userIdを取得
     // songTypeとuserIdを乗せてgetAudioInfoでaudio情報を取得
@@ -16,7 +16,7 @@ exports.NextIntentHandler = {
     const userId = handlerInput.requestEnvelope.session.user.userId;
 
     // songtypeとuseridを乗せて/api/v1/cek/get_audioにpost
-    const audioInfo = getAudioInfo(songType, userId);
+    const audioInfo = await getAudioInfo(songType, userId);
 
     // attributes保存
     const newAttributes = {
@@ -25,8 +25,7 @@ exports.NextIntentHandler = {
     }
     handlerInput.sessionAttributeManager.setSessionAttributes(newAttributes);
 
-    // audioのurl
-    // TODO song.file_urlを見るのではなくて、song.file_nameとドメインなどを組みあわせたものにするか
+    // TODO songがnullのとき
     const audioURL = audioInfo.song.file_url;
 
     if(songType === 1){

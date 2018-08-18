@@ -1,3 +1,4 @@
+var { postLikeSongToServer } = require('./../functions/postLikeSongToServer.js');
 
 exports.LikeIntentHandler = {
   canHandle: function(handlerInput){
@@ -21,7 +22,7 @@ exports.LikeIntentHandler = {
     const userId = handlerInput.requestEnvelope.session.user.userId;
 
     // serverにいいねされたことを通知
-    postLikeSongToServer(audioInfo.song, audioInfo.singer);
+    await postLikeSongToServer(audioInfo.song, userId);
 
     // botにいいねした歌い手と歌の情報を通知
     await postLikeSongToBot(audioInfo.song, audioInfo.singer, userId);
@@ -36,13 +37,9 @@ exports.LikeIntentHandler = {
   }
 }
 
-function postLikeSongToServer(song, singer, userId){
-  console.log('post for server');
-  return this;
-}
 
 // botにいいねしたこと、歌い手、歌の情報をpush
-function postLikeSongToBot(song, singer){
+function postLikeSongToBot(song, singer, userId){
   return new Promise( (resolve, reject) => {
     const line = require('@line/bot-sdk');
 
@@ -84,7 +81,6 @@ function postLikeSongToBot(song, singer){
     }
 
     // TODO
-    userId = "Ue96ac7997c2c11739989823a47ff1c6b";
     client.pushMessage(userId, message).then( () => {
       console.log('post for bot');
       resolve();

@@ -4,7 +4,7 @@ exports.SongTypeIntentHandler = {
   canHandle: function(handlerInput){
     return handlerInput.requestEnvelope.isMatch('SongTypeIntent');
   },
-  handle: function(handlerInput){
+  handle: async function(handlerInput){
     // SongTypeSlotsを取得 >> 1: いいねされていない, 2: いいねされている
     // userIdを取得
     // songtypeとuseridを乗せて/api/v1/cek/get_audioにpost
@@ -20,7 +20,7 @@ exports.SongTypeIntentHandler = {
     const userId = handlerInput.requestEnvelope.session.user.userId;
     
     // songtypeとuseridを乗せて/api/v1/cek/get_audioにpost
-    const audioInfo = getAudioInfo(songType, userId);
+    const audioInfo = await getAudioInfo(songType, userId);
 
     // attributes保存
     const attributes = {
@@ -29,8 +29,6 @@ exports.SongTypeIntentHandler = {
     }
     handlerInput.sessionAttributeManager.setSessionAttributes(attributes);
 
-    // audioのurl
-    // TODO song.file_urlを見るのではなくて、song.file_nameとドメインなどを組みあわせたものにするか
     const audioURL = audioInfo.song.file_url;
 
     if(songType === 1){
