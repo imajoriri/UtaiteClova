@@ -29,14 +29,14 @@ async function postLikeSongToBot(song, singer, userId){
     }
 
     // ないor変な形式だとエラーになる
-    var songURL = song.url;
+    var detailURL = song.detail_url;
 
     // songURLがあったらボタンとして追加
-    if(songURL){
+    if(detailURL){
       message.template.actions.push({
         type: "uri",
         label: `曲をもっと聞きたい!!`,
-        uri: songURL,
+        uri: detailURL,
       })
     }
 

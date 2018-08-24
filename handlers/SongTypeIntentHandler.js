@@ -29,7 +29,8 @@ exports.SongTypeIntentHandler = {
     }
     handlerInput.sessionAttributeManager.setSessionAttributes(attributes);
 
-    const audioURL = audioInfo.song.file_url;
+    //const audioURL = audioInfo.song.file_url;
+    const audioURL = audioInfo.song.sound.url;
 
     if(songType === 1){
       var firstMsg = `いいねしたことない曲を流します。`;

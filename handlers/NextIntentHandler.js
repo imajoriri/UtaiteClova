@@ -26,7 +26,8 @@ exports.NextIntentHandler = {
     handlerInput.sessionAttributeManager.setSessionAttributes(newAttributes);
 
     // TODO songがnullのとき
-    const audioURL = audioInfo.song.file_url;
+    //const audioURL = audioInfo.song.file_url;
+    const audioURL = audioInfo.song.sound.url;
 
     if(songType === 1){
       var lastMsg = `次の曲に進みますか？いいねしますか？`;
