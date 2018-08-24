@@ -5,7 +5,7 @@ exports.SongTypeIntentHandler = {
     return handlerInput.requestEnvelope.isMatch('SongTypeIntent');
   },
   handle: async function(handlerInput){
-    // SongTypeSlotsを取得 >> 1: いいねされていない, 2: いいねされている
+    // SongTypeSlots >> 1: いいねされていない, 2: いいねされている
     // userIdを取得
     // songtypeとuseridを乗せて/api/v1/cek/get_audioにpost
     // 帰ってきた情報 >> song: [obj], singer: [obj]}
@@ -22,6 +22,13 @@ exports.SongTypeIntentHandler = {
     // songtypeとuseridを乗せて/api/v1/cek/get_audioにpost
     const audioInfo = await getAudioInfo(songType, userId);
 
+    // 取得した歌がなかった時
+    if(audioInfo.song === null){
+      return handlerInput.responseBuilder
+        .speak("申し訳ございません。ただいま聞くことのできる歌がありません。")
+        .getResponse();
+    }
+
     // attributes保存
     const attributes = {
       audioInfo: audioInfo,
@@ -29,7 +36,6 @@ exports.SongTypeIntentHandler = {
     }
     handlerInput.sessionAttributeManager.setSessionAttributes(attributes);
 
-    //const audioURL = audioInfo.song.file_url;
     const audioURL = audioInfo.song.sound.url;
 
     if(songType === 1){

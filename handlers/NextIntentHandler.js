@@ -18,6 +18,13 @@ exports.NextIntentHandler = {
     // songtypeとuseridを乗せて/api/v1/cek/get_audioにpost
     const audioInfo = await getAudioInfo(songType, userId);
 
+    // 取得した歌がなかった時
+    if(audioInfo.song === null){
+      return handlerInput.responseBuilder
+        .speak("申し訳ございません。ただいま聞くことのできる歌がありません。")
+        .getResponse();
+    }
+
     // attributes保存
     const newAttributes = {
       audioInfo: audioInfo,
