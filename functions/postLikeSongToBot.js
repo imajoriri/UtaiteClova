@@ -1,4 +1,5 @@
 var { getTwitterImage } = require('./getTwitterImage.js');
+var { isHTTPS } = require('./isHTTPS.js');
 
 // botにいいねしたこと、歌い手、歌の情報をpush
 async function postLikeSongToBot(song, singer, userId){
@@ -12,6 +13,8 @@ async function postLikeSongToBot(song, singer, userId){
 
     var twitterURL = singer.twitter_url || "https://hogehgoe";
     var imageURL = await getTwitterImage(singer.twitter_name) || "https://hogehgoe";
+    // ちゃんと画像URLが取得できなかった時
+    //if(imageURL === "/"){ imageURL = "https://hogehgoe" };
 
     var message = {
       type: "template",
@@ -22,8 +25,8 @@ async function postLikeSongToBot(song, singer, userId){
           {
             type: "uri",
             label: `プロフィールを見る!!`,
-            uri: twitterURL,
-          }, ], thumbnailImageUrl: imageURL, title: `${singer.name}の曲をいいねしました。`,
+            uri: isHTTPS(twitterURL),
+          }, ], thumbnailImageUrl: isHTTPS(imageURL), title: `${singer.name}の曲をいいねしました。`,
         text: `${singer.name}の${song.name}をいいねしました。`
       }
     }
@@ -36,14 +39,16 @@ async function postLikeSongToBot(song, singer, userId){
       message.template.actions.push({
         type: "uri",
         label: `曲をもっと聞きたい!!`,
-        uri: detailURL,
+        uri: isHTTPS(detailURL),
       })
     }
 
+    console.log(message);
     client.pushMessage(userId, message).then( () => {
-      console.log('post for bot');
+      console.log('success for bot');
       resolve();
     }).catch((err) => {
+      console.log('error for bot');
       console.log(err);
       reject();
     });

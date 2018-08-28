@@ -19,7 +19,8 @@ exports.getTwitterImage = function getTwitterImage(twitterName){
         resolve(imageURL);
       });
     }).on('error', (e) => {
-      console.log(e.message); //エラー時
+      console.log(e); //エラー時
+      reject('https://hogehoge');
     });
   });
 

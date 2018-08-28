@@ -1,4 +1,4 @@
-
+var rp = require('request-promise');
 var clova = require("love-clova");
 
 const { LaunchRequestHandler } = require('./handlers/LaunchRequestHandler.js');
@@ -24,7 +24,26 @@ exports.handler = async function(event, content) {
     YesIntentHandler,
     NoIntentHandler,
   )
-  .addErrorHandlers(ErrorHandler)
-  
+    .addErrorHandlers(ErrorHandler)
+
+  var options = {
+    method: 'POST',
+    uri: 'http://' + process.env["serverIP"] + "/api/v1/cek/session_log",
+    form: {
+      userId: event.session.user.userId,
+      skill_session_id: event.session.sessionId,
+      request_type: event.request.type,
+      intent_name: null,
+    },
+  };
+
+  // IntentRequestの時はインテント名もつける
+  if(event.request.type === "IntentRequest"){
+    options.form.intent_name = event.request.intent.name
+  }
+
+  // logを送信
+  rp(options)
+
   return clova.extensionBuilders.invoke(event);
 };
