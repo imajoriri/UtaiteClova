@@ -32,13 +32,12 @@ exports.LaunchRequestHandler = {
 
     const audioURL = audioInfo.song.sound.url;
 
-    if(songType === 1){
-      var firstMsg = `いいねしたことない曲を流します。`;
-      var lastMsg = `次の曲に進みますか？いいねしますか？`;
+    if(audioInfo.isFirst === true){
+      var firstMsg = `今からランダムで20秒ほどの曲を流します。その曲がいいと思ったら曲の終了後にいいねと言ってください。いいねされた曲とシンガーさんをボイシンガーのLINE公式アカウントにて紹介します。`;
     }else{
-      var firstMsg = `いいねされている曲を流します。`;
-      var lastMsg = `次の曲を聴きますか？`;
+      var firstMsg = `曲を流します。`;
     }
+    var lastMsg = `次の曲に進みますか？いいねしますか？`;
 
     return handlerInput.responseBuilder
       .speak(firstMsg)
