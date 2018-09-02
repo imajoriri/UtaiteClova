@@ -41,6 +41,12 @@ async function postLikeSongToBot(song, singer, userId){
         label: `曲をもっと聞きたい!!`,
         uri: isHTTPS(detailURL),
       })
+    }else{
+      message.template.actions.push({
+        type: "uri",
+        label: `曲を聞きたい!!`,
+        uri: isHTTPS(song.sound.url),
+      })
     }
 
     console.log(message);
