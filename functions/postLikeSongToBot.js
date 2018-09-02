@@ -50,9 +50,9 @@ async function postLikeSongToBot(song, singer, userId){
     }
 
     console.log(message);
-    client.pushMessage(userId, message).then( () => {
+    client.pushMessage(userId, message).then( (data) => {
       console.log('success for bot');
-      resolve();
+      resolve(data);
     }).catch((err) => {
       console.log('error for bot');
       console.log(err);
