@@ -1,5 +1,6 @@
 var { postLikeSongToServer } = require('./../functions/postLikeSongToServer.js');
 var { postLikeSongToBot } = require('./../functions/postLikeSongToBot.js');
+const { soundEffects } = require('./../functions/soundEffects');
 
 exports.LikeIntentHandler = {
   canHandle: function(handlerInput){
@@ -34,6 +35,7 @@ exports.LikeIntentHandler = {
     var msg = "いいねしました。歌の詳細はLINEに送りました。次の曲を聞きますか？";
     var reprompt = '次の曲を聞きますか？';
     return handlerInput.responseBuilder
+      .audioPlay(soundEffects.liked)
       .speak(msg)
       .reprompt(reprompt)
       .getResponse();

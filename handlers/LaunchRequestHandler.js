@@ -1,4 +1,5 @@
 const { getAudioInfo } = require('./../functions/getAudioInfo');
+const { soundEffects } = require('./../functions/soundEffects');
 
 exports.LaunchRequestHandler = {
   canHandle: function(handlerInput){
@@ -33,14 +34,24 @@ exports.LaunchRequestHandler = {
     const audioURL = audioInfo.song.sound.url;
 
     if(audioInfo.isFirst === true){
-      var firstMsg = `今からランダムで20秒ほどの曲を流します。その曲がいいと思ったら曲の終了後にいいねと言ってください。いいねされた曲とシンガーさんをボイシンガーのLINE公式アカウントにて紹介します。`;
+      var firstMsg = "初めまして。ボイスシンガーへようこそ。"
+      + "私はこのスキルの案内人のものです。これからあなたには素敵な歌に出会っていただきます。"
+      + "たくさんの歌に出会ってほしいため、１曲あたりの聞ける時間をわずか数秒にしました。"
+      + "もっとその歌を聞きたいと思ったら、その歌に「いいね」と伝えてあげてください。"
+      + "わたくしがあなた宛にLINEで素敵なメッセージを送らせていただきます。"
+      + "それでは、ごゆっくり。"
     }else{
-      var firstMsg = `曲を流します。`;
+      var firstMsg = "こんにちは。"
+      + "またお会いしましたね。"
+      + "今回もまた、あなたのために素敵な歌を用意しました。"
+      + "それではどうぞごゆっくり。"
     }
-    var lastMsg = `次の曲に進みますか？いいねしますか？`;
+    var lastMsg = "次の曲にいきますか？それともこの歌にいいねを送りますか？"
+    + "いいねを送る場合は、いいね、と言ってください。";
 
     return handlerInput.responseBuilder
       .speak(firstMsg)
+      .audioPlay(soundEffects.radio)
       .audioPlay(audioURL)
       .speak(lastMsg)
       .reprompt(lastMsg)
