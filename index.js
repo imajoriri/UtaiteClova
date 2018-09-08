@@ -18,7 +18,7 @@ const { NoIntentHandler } = require('./handlers/NoIntentHandler.js');
 const { postCreateUser } = require('./functions/postCreateUser.js');
 
 exports.handler = async function(event, content) {
-  console.log(event);
+  console.log(JSON.stringify(event));
 
   clova.extensionBuilders.addRequestHandlers(
     LaunchRequestHandler,
