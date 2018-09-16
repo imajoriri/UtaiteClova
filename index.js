@@ -4,10 +4,12 @@ var clova = require("love-clova");
 // /handlers
 const { LaunchRequestHandler } = require('./handlers/LaunchRequestHandler.js');
 const { SessionEndedRequestHandler } = require('./handlers/SessionEndedRequestHandler.js');
-const { ClovaGuideIntentHandler } = require('./handlers/ClovaGuideIntentHandler.js');
 const { ErrorHandler } = require('./handlers/ErrorHandler.js');
 
+// sample
 const { SampleIntentHandler } = require('./handlers/SampleIntentHandler.js');
+
+const { GuideIntentHandler } = require('./handlers/GuideIntentHandler.js');
 const { SongTypeIntentHandler } = require('./handlers/SongTypeIntentHandler.js');
 const { NextIntentHandler } = require('./handlers/NextIntentHandler.js');
 const { LikeIntentHandler } = require('./handlers/LikeIntentHandler.js');
@@ -23,12 +25,12 @@ exports.handler = async function(event, context, callback) {
   clova.extensionBuilders.addRequestHandlers(
     LaunchRequestHandler,
     SessionEndedRequestHandler,
-    ClovaGuideIntentHandler,
     SongTypeIntentHandler,
     NextIntentHandler,
     LikeIntentHandler,
     YesIntentHandler,
     NoIntentHandler,
+    GuideIntentHandler,
   )
     .addErrorHandlers(ErrorHandler)
 
