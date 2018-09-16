@@ -5,7 +5,7 @@ exports.LaunchRequestHandler = {
   canHandle: function(handlerInput){
     return handlerInput.requestEnvelope.isMatch('LaunchRequest');
   },
-  handle: async function(handlerInput){
+  handle: async function(handlerInput, context){
     //var msg = "いいねしたことがない曲なら、１。いいねしたことある曲なら、２。と答えてください。";
     //return handlerInput.responseBuilder.speak(msg).reprompt(msg).getResponse();
 
@@ -14,8 +14,11 @@ exports.LaunchRequestHandler = {
     const songType = 1;
     const userId = handlerInput.requestEnvelope.session.user.userId;
 
+    const alias = context.invokedFunctionArn.split(':').pop();
+    const serverIP = process.env["serverIP" + "_" + alias];
+
     // songtypeとuseridを乗せて/api/v1/cek/get_audioにpost
-    const audioInfo = await getAudioInfo(songType, userId);
+    const audioInfo = await getAudioInfo(songType, userId, serverIP);
 
     // 取得した歌がなかった時
     if(audioInfo.song === null){

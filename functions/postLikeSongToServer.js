@@ -1,9 +1,9 @@
 var rp = require('request-promise');
 
-exports.postLikeSongToServer = (song, userId) => {
+exports.postLikeSongToServer = (song, userId, serverIP) => {
   return new Promise( (resolve, reject) => {
 
-    const uri = "http://" + process.env["serverIP"] + "/api/v1/cek/like";
+    const uri = "http://" + serverIP + "/api/v1/cek/like";
 
     var options = {
       method: 'POST',

@@ -6,7 +6,7 @@ exports.LikeIntentHandler = {
   canHandle: function(handlerInput){
     return handlerInput.requestEnvelope.isMatch('LikeIntent');
   },
-  handle: async function(handlerInput){
+  handle: async function(handlerInput, context){
     // TODO songTypeが1以外の時（いいねされたやつのとき）でももう一度いいねをしてbotに通知を送る
 
     // attributesからaudioInfoを取得
@@ -23,9 +23,12 @@ exports.LikeIntentHandler = {
 
     const userId = handlerInput.requestEnvelope.session.user.userId;
 
+    const alias = context.invokedFunctionArn.split(':').pop();
+    const serverIP = process.env["serverIP" + "_" + alias];
+
     // serverにいいねされたことを通知
     //await postLikeSongToServer(audioInfo.song, userId);
-    postLikeSongToServer(audioInfo.song, userId);
+    postLikeSongToServer(audioInfo.song, userId, serverIP);
 
     // botにいいねした歌い手と歌の情報を通知
     await postLikeSongToBot(audioInfo.song, audioInfo.singer, userId);

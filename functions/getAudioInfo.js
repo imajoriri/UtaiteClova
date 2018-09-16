@@ -1,9 +1,9 @@
 var rp = require('request-promise');
 
-exports.getAudioInfo = (songType, userId) => {
+exports.getAudioInfo = (songType, userId, serverIP) => {
   return new Promise( (resolve, reject) => {
 
-    const uri = "http://" + process.env["serverIP"] + "/api/v1/cek/get_audio";
+    const uri = "http://" + serverIP + "/api/v1/cek/get_audio";
 
     var options = {
       method: 'POST',

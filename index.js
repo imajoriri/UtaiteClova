@@ -17,7 +17,7 @@ const { NoIntentHandler } = require('./handlers/NoIntentHandler.js');
 // /functions
 const { postCreateUser } = require('./functions/postCreateUser.js');
 
-exports.handler = async function(event, content) {
+exports.handler = async function(event, context, callback) {
   console.log(JSON.stringify(event));
 
   clova.extensionBuilders.addRequestHandlers(
@@ -41,9 +41,12 @@ exports.handler = async function(event, content) {
 
   }else if(event.request.type !== "EventRequest"){
 
+    const alias = context.invokedFunctionArn.split(':').pop();
+    const serverIP = process.env["serverIP" + "_" + alias];
+
     var options = {
       method: 'POST',
-      uri: 'http://' + process.env["serverIP"] + "/api/v1/cek/session_log",
+      uri: 'http://' + serverIP + "/api/v1/cek/session_log",
       form: {
         userId: event.session.user.userId,
         skill_session_id: event.session.sessionId,
@@ -59,7 +62,7 @@ exports.handler = async function(event, content) {
     // logを送信
     rp(options)
 
-    return clova.extensionBuilders.invoke(event);
+    return clova.extensionBuilders.invoke(event, context);
   }
 
 };
