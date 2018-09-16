@@ -6,14 +6,15 @@ var FUNCTION_NAME = 'UtaiteAsync';
 var AWS = require('aws-sdk');
 
 // botにいいねしたこと、歌い手、歌の情報をpush
-async function postLikeSongToBot(song, singer, userId){
+async function postLikeSongToBot(song, singer, userId, alias){
   var lambda = new AWS.Lambda();
   var postEvent = {
     method: "postLikeSongToBot",
     events: {
       song: song,
       singer: singer,
-      userId: userId
+      userId: userId,
+      alias: alias
     }
   }
 

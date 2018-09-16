@@ -31,7 +31,7 @@ exports.LikeIntentHandler = {
     postLikeSongToServer(audioInfo.song, userId, serverIP);
 
     // botにいいねした歌い手と歌の情報を通知
-    await postLikeSongToBot(audioInfo.song, audioInfo.singer, userId);
+    await postLikeSongToBot(audioInfo.song, audioInfo.singer, userId, alias);
     //postLikeSongToBot(audioInfo.song, audioInfo.singer, userId);
 
     // ユーザーに次の曲を聞くかどうかを聞く
