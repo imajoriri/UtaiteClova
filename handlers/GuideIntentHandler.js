@@ -3,7 +3,6 @@ const { soundEffects } = require('./../functions/soundEffects');
 
 exports.GuideIntentHandler = {
   canHandle: function(handlerInput){
-    console.log('guideeeeeeeeeeeeeee');
     return handlerInput.requestEnvelope.isMatch('Clova.GuideIntent');
   },
   handle: async function(handlerInput, context){
@@ -32,7 +31,6 @@ exports.GuideIntentHandler = {
 
     const audioURL = audioInfo.song.sound.url;
 
-    console.log('YYYYYYYYYYYYYYYYYYYYYYYYYYYYYY');
     const firstMsg = "このスキルについての説明をしますね。これからあなたには素敵な歌に出会っていただきます。"
       + "たくさんの歌に出会ってほしいため、１曲あたりの聞ける時間をわずか数秒にしました。"
       + "もっとその歌を聞きたいと思ったら、その歌に「いいね」と伝えてあげてください。"
