@@ -16,6 +16,7 @@ const { LikeIntentHandler } = require('./handlers/LikeIntentHandler.js');
 const { YesIntentHandler } = require('./handlers/YesIntentHandler.js');
 const { NoIntentHandler } = require('./handlers/NoIntentHandler.js');
 const { AgainIntentHandler } = require('./handlers/AgainIntentHandler.js');
+const { SongInfoIntentHandler } = require('./handlers/SongInfoIntentHandler.js');
 
 // /functions
 const { postCreateUser } = require('./functions/postCreateUser.js');
@@ -33,6 +34,7 @@ exports.handler = async function(event, context, callback) {
     NoIntentHandler,
     GuideIntentHandler,
     AgainIntentHandler,
+    SongInfoIntentHandler,
   )
     .addErrorHandlers(ErrorHandler)
 
