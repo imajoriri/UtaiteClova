@@ -39,7 +39,7 @@ exports.NextIntentHandler = {
     //const audioURL = audioInfo.song.file_url;
     const audioURL = audioInfo.song.sound.url;
 
-    var lastMsg = `次の曲に進みますか？いいねを送りますか？`;
+    var lastMsg = `いいねを送りますか？いいねせずに、次の曲に進みますか？`;
 
     return handlerInput.responseBuilder
       .audioPlay(audioURL)
