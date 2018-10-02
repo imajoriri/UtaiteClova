@@ -4,7 +4,7 @@ exports.ErrorHandler = {
     return true;
   },
   handle: function(handlerInput){
-    var msg = "エラー発生";
-    return handlerInput.responseBuilder.speak(msg).reprompt(msg).getResponse();
+    var msg = "申し訳ございません。ボイスシンガーがうまく動きませんでした。また時間を開けてから試してください";
+    return handlerInput.responseBuilder.speak(msg).getResponse();
   }
 }
