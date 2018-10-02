@@ -65,10 +65,12 @@ exports.LikeIntentHandler = {
     // userがいない時
       .catch( err => {
         console.log(err);
-        var msg = "いいねを送ろうとしましたが、友達追加されていないため送ることができませんでした。スキルストアより友達追加して、再度お試しください。";
+        var msg = "いいねを送ろうとしましたが、友達追加されていないため送ることができませんでした。スキルストアより友達追加するとLINEアプリの方に通知することができます。次の曲に進みますか？";
+        var reprompt = '次の曲を聞きますか？';
         
         response = handlerInput.responseBuilder
           .speak(msg)
+          .reprompt(reprompt)
           .getResponse();
       });
 
