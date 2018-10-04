@@ -1,5 +1,6 @@
 const { getAudioInfo } = require('./../functions/getAudioInfo');
 const { soundEffects } = require('./../functions/soundEffects');
+const { isAddFriend } = require('./../functions/isAddFriend');
 
 exports.LaunchRequestHandler = {
   canHandle: function(handlerInput){
@@ -50,6 +51,10 @@ exports.LaunchRequestHandler = {
         + "またお会いしましたね。"
         + "今回もまた、あなたのために素敵な歌を用意しました。"
         + "それではどうぞごゆっくり。"
+      if(await isAddFriend(alias, userId) === false){
+        console.log("isAddFriend >>> false");
+        firstMsg += "あ、LINEアカウントの友だち追加もお願いしますね。スキルストアから追加できます。";
+      }
     }
     var lastMsg = "この曲の詳細を知りたい場合は、いいね、を送れます。いいねを送る場合は、いいね、と言ってください。"
     + "次の曲に行く場合は、次へ、と言ってください。"
